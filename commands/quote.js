@@ -1,5 +1,4 @@
-const {adminG,adminCh} = require('../general/config.json');
-const {User} = require("discord.js");
+const {adminCh} = require('../general/config.json');
 
 module.exports = {
     name: 'quote',
@@ -25,7 +24,8 @@ module.exports = {
             quote: interaction.options.getString('quote'),
             author: author,
             approved: false,
-            addedOn: new Date().getTime()
+            addedOn: new Date().getTime(),
+            submittedBy: interaction.user.id
         });
         db.add(`quotes.nextNum`, 1);
         interaction.reply(`Added\`\`\`${interaction.options.getString('quote')}\n\`\`\`to the quote db\nAuthor: ${author}\nId: #${next}`);
