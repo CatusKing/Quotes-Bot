@@ -3,7 +3,6 @@ const db = require('quick.db');
 const fs = require("fs");
 const intents = [Intents.FLAGS.GUILDS];
 const client = new Client({ intents: intents });
-const config = require('./general/config.json');
 const token = require('./general/token.json');
 
 client.commands = new Collection();
@@ -25,6 +24,9 @@ client.once('ready', () => {
     });
     client.application.commands.set(commands).then();
     console.log('Finished setting up slash commands');
+    setInterval(() => {
+        client.user.setActivity(`In ${client.guilds.cache.size} Guilds`)
+    }, 60000)
     console.log(`Logged in as ${client.user.tag}`);
 });
 
