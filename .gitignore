@@ -1,0 +1,6 @@
+node_modules
+general/token.json
+.idea
+package-lock.json
+quotes-bot.iml
+json.sqlite
