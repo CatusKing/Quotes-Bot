@@ -26,7 +26,7 @@ module.exports = {
             quote: interaction.options.getString('quote'),
             author: author,
             approved: false,
-            addedOn: new Date().getTime(),
+            submittedOn: new Date().getTime(),
             submittedBy: interaction.user.id
         });
         db.add(`quotes.nextNum`, 1);
