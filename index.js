@@ -25,7 +25,7 @@ client.once('ready', () => {
     client.application.commands.set(commands).then();
     console.log('Finished setting up slash commands');
     setInterval(() => {
-        client.user.setActivity(`In ${client.guilds.cache.size} Guilds`)
+        client.user.setActivity(`${client.guilds.cache.size} Guilds`, {type: 'WATCHING'})
     }, 60000)
     console.log(`Logged in as ${client.user.tag}`);
 });
