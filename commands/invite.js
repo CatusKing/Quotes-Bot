@@ -5,6 +5,6 @@ module.exports = {
     description: 'Send the guild invite and bot invite',
     options: [],
     execute({ interaction }) {
-        interaction.reply(`Invite me to your guild by going to ${website}\n\nOR\n\nAdd the quotes channel to your discord by joining [here](${discord}) and following the quotes channel`)
+        interaction.reply(`Invite me to your guild by going [here](${website})\n\nOR\n\nAdd the quotes channel to your discord by joining [here](${discord}) and following the quotes channel`)
     }
 }
