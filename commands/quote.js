@@ -1,4 +1,4 @@
-const {adminCh,botOwner} = require('../general/config.json');
+const {adminCh,botOwner,maxQuotes} = require('../general/config.json');
 
 module.exports = {
     name: 'quote',
@@ -21,6 +21,12 @@ module.exports = {
         const banned = db.get('quotes.banned') || [];
         if (banned.includes(interaction.user.id)) return interaction.reply(`Sorry you've been banned from submitting quotes on this bot\nContact ${botOwner} if you think this is a mistake`);
         const next = db.get('quotes.nextNum') || 0;
+        let counter = 0;
+        const quotes = db.get('quotes') || {};
+        for(let i = 0; i < next; ++i) {
+            if (!quotes[i].approved && !quotes[i].denied && quotes[i].submittedBy === interaction.user.id) ++counter;
+        }
+        if (counter >= maxQuotes) return interaction.reply(`Sorry you already ${maxQuotes} quotes pending approval. To avoid spam please wait until approval. If not approved within 24 hours contact CatusKing#2624`);
         const author = interaction.options.getString('author') || 'No Specified Author';
         db.set(`quotes.${next}`, {
             quote: interaction.options.getString('quote'),
