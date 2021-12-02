@@ -3,6 +3,7 @@ const {botOwnerId, adminG, adminACh} = require('../general/config.json');
 module.exports = {
     name: 'admin',
     description: 'General admin commands',
+    guild: adminG,
     options: [
         {
             type: 'SUB_COMMAND',

@@ -4,6 +4,7 @@ const fs = require("fs");
 const intents = [Intents.FLAGS.GUILDS];
 const client = new Client({ intents: intents });
 const token = require('./general/token.json');
+const {adminG} = require('./general/config.json');
 
 client.commands = new Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
@@ -15,14 +16,24 @@ for (const file of commandFiles) {
 client.once('ready', () => {
     console.log('Setting up slash commands');
     const commands = [];
+    const guildCommands = [];
     client.commands.forEach((value) => {
-        commands.push({
-            name: value.name,
-            description: value.description,
-            options: value.options
-        });
+        if (value.guild == null) {
+            commands.push({
+                name: value.name,
+                description: value.description,
+                options: value.options
+            });
+        } else {
+            guildCommands.push({
+                name: value.name,
+                description: value.description,
+                options: value.options
+            });
+        }
     });
     client.application.commands.set(commands).then();
+    client.application.commands.set(guildCommands, adminG).then();
     console.log('Finished setting up slash commands');
     setInterval(() => {
         client.user.setActivity(`${client.guilds.cache.size} Guilds`, {type: 'WATCHING'})
