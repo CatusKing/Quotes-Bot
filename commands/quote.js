@@ -26,7 +26,7 @@ module.exports = {
         for(let i = 0; i < next; ++i) {
             if (!quotes[i].approved && !quotes[i].denied && quotes[i].submittedBy === interaction.user.id) ++counter;
         }
-        if (counter >= maxQuotes) return interaction.reply(`Sorry you already ${maxQuotes} quotes pending approval. To avoid spam please wait until approval. If not approved within 24 hours contact CatusKing#2624`);
+        if (counter >= maxQuotes) return interaction.reply({ephemeral:true,content:`Sorry you already ${maxQuotes} quotes pending approval. To avoid spam please wait until approval. If not approved within 24 hours contact CatusKing#2624`});
         const author = interaction.options.getString('author') || 'No Specified Author';
         db.set(`quotes.${next}`, {
             quote: interaction.options.getString('quote'),
@@ -36,7 +36,7 @@ module.exports = {
             submittedBy: interaction.user.id
         });
         db.add(`quotes.nextNum`, 1);
-        interaction.reply(`Added\`\`\`${interaction.options.getString('quote')}\n\`\`\`to the quote db\nAuthor: ${author}\nId: #${next}`);
+        interaction.reply({ephemeral: true,content:`Added\`\`\`${interaction.options.getString('quote')}\n\`\`\`to the quote db\nAuthor: ${author}\nId: #${next}`});
         client.channels.cache.get(adminCh).send(`New Quote\nId: #${next}\nSubmitted by: ${interaction.user}\nAuthor: ${author}\nQuote:\`\`\`${interaction.options.getString('quote')}\n\`\`\``);
     }
 }
