@@ -13,7 +13,7 @@ module.exports = {
         {
             type: 'STRING',
             name: 'author',
-            description: 'Author of the quote',
+            description: 'Name of the author of the quote(don\'t @ people)',
             required: false
         }
     ],
