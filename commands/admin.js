@@ -49,7 +49,7 @@ module.exports = {
                     db.set(`quotes.${interaction.options.getInteger('quote-id')}`, quote);
                     interaction.reply(`Set Id: #${interaction.options.getInteger('quote-id')} to ${interaction.options.getBoolean('status')}`);
                     if (quote.approved) {
-                        client.guilds.cache.get(adminG).channels.cache.get(adminACh).send(`New Quote by ${quote.author}! This was submitted on <t:${Math.floor(quote.submittedOn / 1000)}:f>\n\`\`\`${quote.quote}\n\`\`\``).then(msg => {
+                        client.guilds.cache.get(adminG).channels.cache.get(adminACh).send(`New Quote said by ${quote.author}! This was submitted on <t:${Math.floor(quote.submittedOn / 1000)}:f>\n\`\`\`${quote.quote}\n\`\`\``).then(msg => {
                             msg.crosspost().then();
                         });
                     }
