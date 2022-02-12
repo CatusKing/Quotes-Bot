@@ -37,6 +37,6 @@ module.exports = {
         });
         db.add(`quotes.nextNum`, 1);
         interaction.reply({ephemeral: true,content:`Added\`\`\`${interaction.options.getString('quote')}\n\`\`\`to the quote db\nAuthor: ${author}\nId: #${next}`});
-        client.channels.cache.get(adminCh).send(`New Quote\nId: #${next}\nSubmitted by: ${interaction.user}\nAuthor: ${author}\nQuote:\`\`\`${interaction.options.getString('quote')}\n\`\`\``);
+        client.channels.cache.get(adminCh).send(`New Quote\nId: #${next}\nSubmitted by: ${interaction.user}(${interaction.user.tag})\nAuthor: ${author}\nQuote:\`\`\`${interaction.options.getString('quote')}\n\`\`\``);
     }
 }
